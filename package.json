@@ -1,0 +1,26 @@
+{
+  "name": "semantic-nuget-pacakge",
+  "version": "0.0.0-development",
+  "description": "Example nuget package repo using semantic release",
+  "main": "index.js",
+  "devDependencies": {
+    "jest": "^29.3.1",
+    "semantic-release": "^20.0.2"
+  },
+  "scripts": {
+    "test": "jest test.js"
+  },
+  "release": {
+      "branches": ["main", "{name: 'beta', prerelease: true}", "{name: 'alpha', prerelease: true}"]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Architected/semantic-nuget-pacakge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Architected/semantic-nuget-pacakge/issues"
+  },
+  "homepage": "https://github.com/Architected/semantic-nuget-pacakge#readme"
+}
