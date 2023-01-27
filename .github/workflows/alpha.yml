@@ -25,3 +25,4 @@ jobs:
           build-environment: dev
           coverage-threshold: 90
           repo-organisation: architected
+          team-pat: ${{ secrets.TEAM_PAT}}
