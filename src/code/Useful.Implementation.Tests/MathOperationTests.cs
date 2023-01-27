@@ -1,5 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace Useful.Implementation.Tests
 {
+    [ExcludeFromCodeCoverage]
     public class MathOperationTests
     {
         [SetUp]
