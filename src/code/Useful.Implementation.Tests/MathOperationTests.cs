@@ -11,13 +11,23 @@ namespace Useful.Implementation.Tests
         }
 
         [Test]
-        public void Test1()
+        public void TestAdd()
         {
 
             var mathOperations = new MathOperations();
             var sum = mathOperations.Add(2, 2);
 
             Assert.That(sum, Is.EqualTo(4));
+        }
+
+        [Test]
+        public void TestSubtract()
+        {
+
+            var mathOperations = new MathOperations();
+            var sum = mathOperations.Subtract(4, 2);
+
+            Assert.That(sum, Is.EqualTo(2));
         }
     }
 }

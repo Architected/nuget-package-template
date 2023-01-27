@@ -17,12 +17,6 @@ jobs:
     environment: dev
     timeout-minutes: 20
     steps:
-      - run: echo 'NUGET_USERNAME ${{ env.NUGET_USERNAME }}'
-      - run: echo 'SRC_DIR ${{ env.SRC_DIR }}'
-      - run: echo 'BUILD_ENVIRONMENT ${{ env.BUILD_ENVIRONMENT }}'
-      - run: echo 'COVERAGE_THRESHOLD ${{ env.COVERAGE_THRESHOLD }}'
-      - run: echo 'REPO_ORGANISATION ${{ env.REPO_ORGANISATION }}'
-      - run: echo 'https://nuget.pkg.github.com/${{env.REPO_ORGANISATION}}/index.json'
       - uses: actions/checkout@v3
         with:
           persist-credentials: false
@@ -54,7 +48,7 @@ jobs:
           hide_complexity: true
           indicators: true
           output: both
-          thresholds: '60 80'
+          thresholds: '90 95'
       - name: Add Coverage PR Comment
         uses: marocchino/sticky-pull-request-comment@v2
         if: github.event_name == 'pull_request'
