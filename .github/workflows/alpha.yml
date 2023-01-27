@@ -32,7 +32,7 @@ jobs:
           include-prerelease: false
       - name: Add Github pacakges nuget source
         run: |
-          dotnet nuget add source --username ${{ env.NUGET_USERNAME}} --password ${{secrets.NUGET_PAT}} --store-password-in-clear-text --name "https://nuget.pkg.github.com/${{env.REPO_ORGANISATION}}/index.json"
+          dotnet nuget add source --username ${{ env.NUGET_USERNAME}} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name "https://nuget.pkg.github.com/${{env.REPO_ORGANISATION}}/index.json"
       - name: Install dependancies
         run: dotnet restore ${{env.SRC_DIR}}
       - name: Build solution
@@ -83,7 +83,7 @@ jobs:
           include-prerelease: false
       - name: Add Github pacakges nuget source
         run: |
-          dotnet nuget add source --username ${{ env.NUGET_USERNAME}} --password ${{secrets.NUGET_PAT}} --store-password-in-clear-text --name "https://nuget.pkg.github.com/${{env.REPO_ORGANISATION}}/index.json"
+          dotnet nuget add source --username ${{ env.NUGET_USERNAME}} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name "https://nuget.pkg.github.com/${{env.REPO_ORGANISATION}}/index.json"
       - name: Install dependancies
         run: dotnet restore ${{env.SRC_DIR}}
       - name: Build solution
