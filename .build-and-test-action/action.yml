@@ -12,9 +12,13 @@ inputs:
     required: true
   coverage-threshold:
     description: code coverage threshold
-    required: true
+    default: '90'
+    required: false
   repo-organisation:
     description: repo organisation name
+    required: true
+  team-pat:
+    description: team pat
     required: true
 runs:
   using: composite
@@ -25,7 +29,7 @@ runs:
         dotnet-version: '6.0.x'
     - name: Add Github pacakges nuget source
       run: |
-        dotnet nuget add source --username ${{ inputs.nuget-username}} --password ${{ secrets.TEAM_PAT }} --store-password-in-clear-text --name github 'https://nuget.pkg.github.com/${{inputs.repo-organisation}/index.json'
+        dotnet nuget add source --username ${{ inputs.nuget-username}} --password ${{ inputs.team-pat }} --store-password-in-clear-text --name github 'https://nuget.pkg.github.com/${{inputs.repo-organisation}}/index.json'
       shell: bash
     - name: Install dependancies
       run: dotnet restore ${{inputs.src-dir}}
@@ -37,7 +41,7 @@ runs:
       run: dotnet tool install --global dotnet-reportgenerator-globaltool
       shell: bash
     - name: Run unit tests
-      run: dotnet test ${{inputs.src-dir}} --filter FullyQualifiedName~Tests --configuration Release --verbosity quiet --collect:"XPlat Code Coverage" --results-directory ./coverage /p:CollectCoverage=true /p:Threshold=${{inputs.COVERAGE_THRESHOLD}}
+      run: dotnet test ${{inputs.src-dir}} --filter FullyQualifiedName~Tests --configuration Release --verbosity quiet --collect:"XPlat Code Coverage" --results-directory ./coverage /p:CollectCoverage=true /p:Threshold=${{inputs.coverage-threshold}}
       shell: bash
     - name: Merge Coverage Reports
       run: reportgenerator -reports:./coverage/**/coverage.cobertura.xml -targetdir:./coverage -reporttypes:Cobertura
@@ -53,7 +57,7 @@ runs:
         hide_complexity: true
         indicators: true
         output: both
-        thresholds: '90 95'
+        thresholds: '${{inputs.coverage-threshold}}'
     - name: Add Coverage PR Comment
       uses: marocchino/sticky-pull-request-comment@v2
       if: ${{ github.event_name == 'pull_request' }}
