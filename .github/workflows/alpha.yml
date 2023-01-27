@@ -3,8 +3,6 @@ on:
   push:
     branches:
       - 'alpha*'
-    paths:
-      - 'src/code/**'
 env:
   NUGET_USERNAME: automation
   SRC_DIR: .src/code
