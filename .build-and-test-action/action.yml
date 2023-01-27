@@ -28,7 +28,7 @@ runs:
         dotnet-version: '6.0.x'
     - name: Add Github pacakges nuget source
       run: |
-        dotnet nuget add source --username ${{ inputs.nuget-username}} --password ${{ inputs.team-pat }} --store-password-in-clear-text --name github 'https://nuget.pkg.github.com/${{inputs.repo-organisation}/index.json'
+        dotnet nuget add source --username ${{ inputs.nuget-username}} --password ${{ inputs.team-pat }} --store-password-in-clear-text --name github 'https://nuget.pkg.github.com/${{inputs.repo-organisation}}/index.json'
       shell: bash
     - name: Install dependancies
       run: dotnet restore ${{inputs.src-dir}}
