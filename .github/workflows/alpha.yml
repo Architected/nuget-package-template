@@ -5,7 +5,7 @@ on:
     branches:
       - 'alpha*'
     paths:
-      - 'src/code'
+      - 'src/code/**'
 env:
   NUGET_USERNAME: architected_automation
   SRC_DIR: .src/code
