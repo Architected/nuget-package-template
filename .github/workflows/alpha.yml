@@ -3,9 +3,9 @@ name: Alpha Pipeline
 on:
   push:
     branches:
-      - alpha
+      - 'alpha*'
     paths:
-      - 'src/**'
+      - 'src/code'
 env:
   NUGET_USERNAME: architected_automation
   SRC_DIR: .src/code
