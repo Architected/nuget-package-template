@@ -12,7 +12,8 @@ inputs:
     required: true
   coverage-threshold:
     description: code coverage threshold
-    required: true
+    default: '90'
+    required: false
   repo-organisation:
     description: repo organisation name
     required: true
@@ -56,7 +57,7 @@ runs:
         hide_complexity: true
         indicators: true
         output: both
-        thresholds: '90'
+        thresholds: '${{inputs.coverage-threshold}}'
     - name: Add Coverage PR Comment
       uses: marocchino/sticky-pull-request-comment@v2
       if: ${{ github.event_name == 'pull_request' }}

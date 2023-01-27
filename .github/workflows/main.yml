@@ -2,9 +2,7 @@ name: Alpha Pipeline
 on:
   push:
     branches:
-      - 'alpha*'
-    paths:
-      - 'src/**'
+      - 'main'
 env:
   nuget-username: automation
   src-dir: ./src/code
@@ -12,7 +10,7 @@ env:
   coverage-threshold: 90
   repo-organisation: architected
   team-pat: ${{ secrets.TEAM_PAT}}
-concurrency: alpha-${{ github.ref}}
+concurrency: main-${{ github.ref}}
 jobs:
   dotnetBuild:
     name: Build and Test solution

@@ -1,10 +1,7 @@
 name: Alpha Pipeline
 on:
-  push:
-    branches:
-      - 'alpha*'
-    paths:
-      - 'src/**'
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
 env:
   nuget-username: automation
   src-dir: ./src/code
@@ -31,21 +28,5 @@ jobs:
           src-dir: ${{ env.src-dir }}
           build-environment: ${{ env.build-environment }}
           coverage-threshold: ${{ env.coverage-threshold }}
-          repo-organisation: ${{ env.repo-organisation }}
-          team-pat: ${{ secrets.TEAM_PAT}}
-  pushPackages:
-    name: Push Packages
-    runs-on: ubuntu-latest
-    environment: dev
-    timeout-minutes: 20
-    steps:
-      - name: Checkout action
-        uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-      - uses: ./.push-package-action
-        with:
-          nuget-username: ${{ env.nuget-username }}
-          src-dir: ${{ env.src-dir }}
           repo-organisation: ${{ env.repo-organisation }}
           team-pat: ${{ secrets.TEAM_PAT}}
