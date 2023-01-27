@@ -22,6 +22,7 @@ jobs:
       - run: echo 'BUILD_ENVIRONMENT ${{ env.BUILD_ENVIRONMENT }}'
       - run: echo 'COVERAGE_THRESHOLD ${{ env.COVERAGE_THRESHOLD }}'
       - run: echo 'REPO_ORGANISATION ${{ env.REPO_ORGANISATION }}'
+      - run: echo 'https://nuget.pkg.github.com/${{env.REPO_ORGANISATION}}/index.json'
       - uses: actions/checkout@v3
         with:
           persist-credentials: false
@@ -29,10 +30,9 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6.0.x'
-          include-prerelease: false
       - name: Add Github pacakges nuget source
         run: |
-          dotnet nuget add source --username ${{ env.NUGET_USERNAME}} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name "https://nuget.pkg.github.com/${{env.REPO_ORGANISATION}}/index.json"
+          dotnet nuget add source --username ${{ env.NUGET_USERNAME}} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name 'https://nuget.pkg.github.com/${{env.REPO_ORGANISATION}}/index.json'
       - name: Install dependancies
         run: dotnet restore ${{env.SRC_DIR}}
       - name: Build solution
@@ -64,6 +64,7 @@ jobs:
   publishNugetPackage:
     name: Publish Nuget Package
     runs-on: ubuntu-latest
+    needs: buildAndTest
     environment: dev
     timeout-minutes: 20
     steps:
