@@ -40,7 +40,7 @@ jobs:
       - name: Install dotnet report generator tool
         run: dotnet tool install --global dotnet-reportgenerator-globaltool
       - name: Run unit tests
-        run: dotnet test ${{env.SRC_DIR}} --filter FullyQualifiedName~Tests --configuration Release --verbosity quiet --collect:"XPlat Code Coverage" --results-directory ./coverage /p:Threshold=${{env.COVERAGE_THRESHOLD}}
+        run: dotnet test ${{env.SRC_DIR}} --filter FullyQualifiedName~Tests --configuration Release --verbosity quiet --collect:"XPlat Code Coverage" --results-directory ./coverage /p:CollectCoverage=true /p:Threshold=${{env.COVERAGE_THRESHOLD}}
       - name: Merge Coverage Reports
         run: reportgenerator -reports:./coverage/**/coverage.cobertura.xml -targetdir:./coverage -reporttypes:Cobertura
       - name: Code Coverage Report
