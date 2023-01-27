@@ -3,12 +3,6 @@ on:
   push:
     branches:
       - 'alpha*'
-env:
-  NUGET_USERNAME: automation
-  SRC_DIR: ./src/code
-  BUILD_ENVIRONMENT: dev
-  COVERAGE_THRESHOLD: 90
-  REPO_ORGANISATION: architected
 concurrency: alpha-${{ github.ref}}
 jobs:
   dotnetBuild:
@@ -17,10 +11,13 @@ jobs:
     environment: dev
     timeout-minutes: 20
     steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
       - uses: ./build-and-test-action
         with:
-          nuget-username: ${{ env.NUGET_USERNAME }}
-          src-dir: ${{ env.SRC_DIR }}
-          build-environment: ${{ env.BUILD_ENVIRONMENT }}
-          coverage-threshold: ${{ env.COVERAGE_THRESHOLD }}
-          repo-organisation: ${{ env.REPO_ORGANISATION }}
+          nuget-username: automation
+          src-dir: ./src/code
+          build-environment: dev
+          coverage-threshold: 90
+          repo-organisation: architected
