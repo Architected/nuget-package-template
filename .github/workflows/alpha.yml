@@ -64,7 +64,7 @@ jobs:
   publishNugetPackage:
     name: Publish Nuget Package
     runs-on: ubuntu-latest
-    environment: ${{ env.BUILD_ENVIRONMENT }}
+    environment: dev
     timeout-minutes: 20
     steps:
       - uses: action/checkout@v3
