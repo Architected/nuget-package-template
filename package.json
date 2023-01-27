@@ -4,7 +4,12 @@
   "description": "Example nuget package repo using semantic release",
   "main": "index.js",
   "devDependencies": {
-    "jest": "^29.3.1",
+    "@semantic-release/changelog": "^6.0.2",
+    "@semantic-release/commit-analyzer": "^9.0.2",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^8.0.7",
+    "@semantic-release/release-notes-generator": "^10.0.3",
     "semantic-release": "^20.0.2"
   },
   "repository": {
