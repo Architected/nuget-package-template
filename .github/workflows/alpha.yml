@@ -1,5 +1,4 @@
 name: Alpha Pipeline
-
 on:
   push:
     branches:
@@ -7,7 +6,7 @@ on:
     paths:
       - 'src/code/**'
 env:
-  NUGET_USERNAME: architected_automation
+  NUGET_USERNAME: automation
   SRC_DIR: .src/code
   BUILD_ENVIRONMENT: dev
   COVERAGE_THRESHOLD: 90
@@ -17,9 +16,14 @@ jobs:
   buildAndTest:
     name: Build And test
     runs-on: ubuntu-latest
-    environment: ${{ env.BUILD_ENVIRONMENT }}
+    environment: dev
     timeout-minutes: 20
     steps:
+      - run: echo 'NUGET_USERNAME ${{ env.NUGET_USERNAME }}'
+      - run: echo 'SRC_DIR ${{ env.SRC_DIR }}'
+      - run: echo 'BUILD_ENVIRONMENT ${{ env.BUILD_ENVIRONMENT }}'
+      - run: echo 'COVERAGE_THRESHOLD ${{ env.COVERAGE_THRESHOLD }}'
+      - run: echo 'REPO_ORGANISATION ${{ env.REPO_ORGANISATION }}'
       - uses: action/checkout@v3
         with:
           persist-credentials: false
