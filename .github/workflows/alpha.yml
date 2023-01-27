@@ -22,7 +22,7 @@ jobs:
       - run: echo 'BUILD_ENVIRONMENT ${{ env.BUILD_ENVIRONMENT }}'
       - run: echo 'COVERAGE_THRESHOLD ${{ env.COVERAGE_THRESHOLD }}'
       - run: echo 'REPO_ORGANISATION ${{ env.REPO_ORGANISATION }}'
-      - uses: action/checkout@v3
+      - uses: actions/checkout@v3
         with:
           persist-credentials: false
       - name: Setup dotnet
@@ -67,7 +67,7 @@ jobs:
     environment: dev
     timeout-minutes: 20
     steps:
-      - uses: action/checkout@v3
+      - uses: actions/checkout@v3
         with:
           persist-credentials: false
       - name: Setup Node.js
