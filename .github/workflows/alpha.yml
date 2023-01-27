@@ -5,7 +5,7 @@ on:
       - 'alpha*'
 env:
   NUGET_USERNAME: automation
-  SRC_DIR: .src/code
+  SRC_DIR: ./src/code
   BUILD_ENVIRONMENT: dev
   COVERAGE_THRESHOLD: 90
   REPO_ORGANISATION: architected
