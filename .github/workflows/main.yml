@@ -1,4 +1,4 @@
-name: Alpha Pipeline
+name: Main Pipeline
 on:
   push:
     branches:
@@ -22,6 +22,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           persist-credentials: false
+    
       - name: buildAndTest
         uses: ./.build-and-test-action
         with:
@@ -33,6 +34,7 @@ jobs:
           team-pat: ${{ secrets.TEAM_PAT}}
   pushPackages:
     name: Push Packages
+    needs: dotnetBuild
     runs-on: ubuntu-latest
     environment: dev
     timeout-minutes: 20
@@ -41,6 +43,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           persist-credentials: false
+
       - uses: ./.push-package-action
         with:
           nuget-username: ${{ env.nuget-username }}
