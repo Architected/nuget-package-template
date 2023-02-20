@@ -16,7 +16,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "dotnet pack ./src/code --configuration release --output ./publish_packages -p:PackageVersion=\"${nextRelease.version}\"",
+        "prepareCmd": "dotnet pack ./src/code --configuration release -p:PackageOutputPath=./publish_packages -p:PackageVersion=\"${nextRelease.version}\"",
         "publishCmd": "dotnet nuget push \"publish_packages/Useful.Implementation.*.nupkg\" --source \"github\""
       }
     ]
