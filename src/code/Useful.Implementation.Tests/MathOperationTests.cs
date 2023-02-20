@@ -8,6 +8,7 @@ namespace Useful.Implementation.Tests
         [SetUp]
         public void Setup()
         {
+            
         }
 
         [Test]
