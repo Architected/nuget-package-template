@@ -1,5 +1,5 @@
 name: Build And Test
-description: Build And Test for .net solutions
+description: Build And Test
 inputs:
   nuget-username:
     description: nuget username
@@ -18,7 +18,7 @@ inputs:
     description: repo organisation name
     required: true
   team-pat:
-    description: team pat
+    description: team personal access token
     required: true
 runs:
   using: composite
@@ -27,37 +27,45 @@ runs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '6.0.x'
+
     - name: Add Github pacakges nuget source
       run: |
         dotnet nuget add source --username ${{ inputs.nuget-username}} --password ${{ inputs.team-pat }} --store-password-in-clear-text --name github 'https://nuget.pkg.github.com/${{inputs.repo-organisation}}/index.json'
       shell: bash
+    
     - name: Install dependancies
       run: dotnet restore ${{inputs.src-dir}}
       shell: bash
+    
     - name: Build solution
       run: dotnet build ${{inputs.src-dir}} --configuration Release --no-restore
       shell: bash
+    
     - name: Install dotnet report generator tool
       run: dotnet tool install --global dotnet-reportgenerator-globaltool
       shell: bash
+    
     - name: Run unit tests
       run: dotnet test ${{inputs.src-dir}} --filter FullyQualifiedName~Tests --configuration Release --verbosity quiet --collect:"XPlat Code Coverage" --results-directory ./coverage /p:CollectCoverage=true /p:Threshold=${{inputs.coverage-threshold}}
       shell: bash
+    
     - name: Merge Coverage Reports
       run: reportgenerator -reports:./coverage/**/coverage.cobertura.xml -targetdir:./coverage -reporttypes:Cobertura
       shell: bash
+    
     - name: Code Coverage Report
       uses: irongut/CodeCoverageSummary@v1.3.0
       with:
-        filename: coverage/**/coverage.cobertura.xml
+        filename: ./coverage/**/coverage.cobertura.xml
         badge: true
         fail_below_min: true
         format: markdown
         hide_branch_rate: false
-        hide_complexity: true
+        hide_complexity: false
         indicators: true
         output: both
         thresholds: '${{inputs.coverage-threshold}}'
+
     - name: Add Coverage PR Comment
       uses: marocchino/sticky-pull-request-comment@v2
       if: ${{ github.event_name == 'pull_request' }}
