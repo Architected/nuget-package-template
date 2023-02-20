@@ -39,5 +39,15 @@ namespace Useful.Implementation.Tests
 
             Assert.That(sum, Is.EqualTo(8));
         }
+
+        [Test]
+        public void TestDivide()
+        {
+
+            var mathOperations = new MathOperations();
+            var sum = mathOperations.Divide(4, 2);
+
+            Assert.That(sum, Is.EqualTo(2));
+        }
     }
 }
