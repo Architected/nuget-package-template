@@ -1,6 +1,18 @@
 # [1.1.0](https://github.com/Architected/semantic-nuget-package/compare/v1.0.0...v1.1.0) (2023-02-20)
 
 
+### Bug Fixes
+
+* final fix ? ([f2b54ef](https://github.com/Architected/semantic-nuget-package/commit/f2b54ef10b560e2e765881e38cc069c3b514cb4e))
+
+
+### Features
+
+* Add divide ([6d1ba99](https://github.com/Architected/semantic-nuget-package/commit/6d1ba99e1398194e7f04ddb5b0d7cb2e93adb834))
+
+# [1.1.0](https://github.com/Architected/semantic-nuget-package/compare/v1.0.0...v1.1.0) (2023-02-20)
+
+
 ### Features
 
 * Add divide ([6d1ba99](https://github.com/Architected/semantic-nuget-package/commit/6d1ba99e1398194e7f04ddb5b0d7cb2e93adb834))
