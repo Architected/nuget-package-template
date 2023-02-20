@@ -1,5 +1,5 @@
 {
-  "name": "semantic-nuget-pacakge",
+  "name": "semantic-nuget-package",
   "version": "0.0.0-development",
   "description": "Example nuget package repo using semantic release",
   "main": "index.js",
@@ -14,12 +14,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Architected/semantic-nuget-pacakge.git"
+    "url": "git+https://github.com/Architected/semantic-nuget-package.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Architected/semantic-nuget-pacakge/issues"
+    "url": "https://github.com/Architected/semantic-nuget-package/issues"
   },
-  "homepage": "https://github.com/Architected/semantic-nuget-pacakge#readme"
+  "homepage": "https://github.com/Architected/semantic-nuget-package#readme"
 }
