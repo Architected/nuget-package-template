@@ -29,5 +29,15 @@ namespace Useful.Implementation.Tests
 
             Assert.That(sum, Is.EqualTo(2));
         }
+
+        [Test]
+        public void TestMultiply()
+        {
+
+            var mathOperations = new MathOperations();
+            var sum = mathOperations.Multiply(4, 2);
+
+            Assert.That(sum, Is.EqualTo(8));
+        }
     }
 }
