@@ -1,4 +1,4 @@
-name: Alpha Pipeline
+name: Main Pipeline
 on:
   push:
     branches:
